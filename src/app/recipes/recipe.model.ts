@@ -10,6 +10,7 @@ export class Recipe{
         this.name = name;
         this.description = description;
         this.imagePath = imagePath;
+        this.id = id;
         this.ingredients = ingredients;
     }
 }

@@ -1,3 +1,9 @@
+ <div class = "row">
+  <div class="col-md-12">
+    <h3 style="color:#337ab7">Your Selected Recipe</h3>
+  </div>
+ </div>
+ 
  <div class="row">
    <div class="col-md-12">
      <img src="{{recipeElm.imagePath}}" alt="" class = "img-responsive" style = "height: 200px;">
@@ -17,7 +23,7 @@
        </button>
        <ul class = "dropdown-menu open">
          <li><a style="cursor: pointer" (click) = "!!toShoppingList()">To Shopping List</a></li>
-         <li><a style="cursor: pointer">Edit Recipe</a></li>
+         <li><a style="cursor: pointer" (click) = "editRecipe()" >Edit Recipe</a></li>
          <li><a style="cursor: pointer">Delete Recipe</a></li>
        </ul>
      </div>
