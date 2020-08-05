@@ -23,8 +23,15 @@
       <div class="row">
         <div class="col-md-12">
           <button class="btn btn-success" type = "Submit" [disabled] = "!f.valid" >{{ editMode ? 'Update':'Add'}}</button>
-          <button class="btn btn-danger" type = "button">Delete</button>
-          <button class="btn btn-primary" type = "button">Reset</button>
+          <button class="btn btn-danger" 
+            type = "button" 
+            (click) = "onDeleteIngredient()"
+            *ngIf = "editMode"
+            style="margin-left:5px;">Delete</button>
+          <button class="btn btn-primary" 
+            type = "button" 
+            (click) = "onClear(f)"
+            style="margin-left:5px;">Clear</button>
         </div>
       </div>
     </form>
