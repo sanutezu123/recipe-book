@@ -5,8 +5,13 @@
  </div>
  
  <div class="row">
-   <div class="col-md-12">
+   <div class="col-md-6">
      <img src="{{recipeElm.imagePath}}" alt="" class = "img-responsive" style = "height: 200px;">
+   </div>
+   <div class="col-md-6">
+      <div class="embed-responsive embed-responsive-16by9">
+      <iframe  *ngIf = "recipeElm.safeVideoPath" class="embed-responsive-item" [src]="recipeElm.safeVideoPath"  height="200px" allowfullscreen></iframe>
+     </div>
    </div>
  </div>
  <div class="row">
@@ -29,7 +34,7 @@
      </div>
    </div>
  </div>
- <div class="row">
+ <div class="row" style = "margin-top: 10px;margin-bottom: 10px;">
   <div class="col-md-12">
     {{recipeElm.description}}
   </div>
@@ -38,7 +43,7 @@
    <div class="col-md-12">
      <ul class = "list-group">
        <li class = "list-group-item" *ngFor = "let ingredient of recipeElm.ingredients">
-        {{ingredient.name}} - {{ingredient.amount}} 
+        {{ingredient.name}}  {{ingredient.amount}} 
        </li>
      </ul>
    </div>

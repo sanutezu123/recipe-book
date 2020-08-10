@@ -17,7 +17,10 @@ import { ErrorPageComponent } from './error-page/error-page.component';
 import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { ShortenPipe } from './shared/shorten.pipe';
+import { FirebaseStorageService } from './shared/firebase-storage.service';
+import { HttpClientModule } from '@angular/common/http';
+import { SafePipeModule } from 'safe-pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,15 +34,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     DropdownDirective,
     ErrorPageComponent,
     RecipeStartComponent,
-    RecipeEditComponent
+    RecipeEditComponent,
+    ShortenPipe,
    ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    SafePipeModule
   ],
-  providers: [RecipeService, ShoppingListService],
+  providers: [RecipeService, ShoppingListService, FirebaseStorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

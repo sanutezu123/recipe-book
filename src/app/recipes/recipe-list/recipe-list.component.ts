@@ -3,6 +3,7 @@ import { Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { FirebaseStorageService } from 'src/app/shared/firebase-storage.service';
 
 @Component({
   selector: 'app-recipe-list',
@@ -13,10 +14,11 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   recipes: Recipe[] = [];
   subscription: Subscription;
   constructor(private recipeService: RecipeService, private router: Router,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute, private fbService: FirebaseStorageService) { }
 
   ngOnInit() {
-    this.recipes = this.recipeService.getRecipe();
+    //this.recipes = this.recipeService.getRecipe();
+    this.fbService.fetchRecipesFromFirebase().subscribe();
     this.subscription = this.recipeService.newRecipeCreated.subscribe(
       (newRecipesList: Recipe[]) => {
         this.recipes = newRecipesList;

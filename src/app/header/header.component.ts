@@ -1,4 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { RecipeService } from '../recipes/recipe.service';
+import { FirebaseStorageService } from '../shared/firebase-storage.service';
 
 @Component({
   selector: 'app-header',
@@ -7,8 +9,20 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private firebaseStorageService: FirebaseStorageService) { }
 
   ngOnInit() {
+  }
+
+  saveRecipes() {
+    this.firebaseStorageService.storeRecipesInFirebase()
+    .subscribe(
+      ( repsonse ) => {
+        console.log( repsonse );
+      }
+    );
+  }
+  fetchRecipes() {
+    this.firebaseStorageService.fetchRecipesFromFirebase().subscribe();
   }
 }

@@ -3,7 +3,7 @@ import { Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
 import { ShoppingListService } from 'src/app/shopping-list/shopping-list.service';
 import { ActivatedRoute, Params, Router} from '@angular/router';
-
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser'
 @Component({
   selector: 'app-recipe-detail',
   templateUrl: './recipe-detail.component.html',
@@ -12,10 +12,12 @@ import { ActivatedRoute, Params, Router} from '@angular/router';
 export class RecipeDetailComponent implements OnInit {
 
   private recipeElm: Recipe;
+  videoPath: SafeResourceUrl;
   private id: number;
   constructor(private shoppingListService: ShoppingListService,
               private reviceService: RecipeService,
-              private route: ActivatedRoute, private router: Router) { }
+              private route: ActivatedRoute, private router: Router,
+              private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
     this.id = +this.route.snapshot.params['id'];
@@ -23,6 +25,8 @@ export class RecipeDetailComponent implements OnInit {
     this.route.params.subscribe(
       (params: Params) => {
         this.recipeElm = this.reviceService.getRecipeById(+params['id']);
+        console.log("video path"+this.recipeElm.videoPath)
+        this.recipeElm.safeVideoPath = this.createrYouTubeUrl(this.recipeElm.videoPath);
       }
     );
   }
@@ -41,4 +45,11 @@ export class RecipeDetailComponent implements OnInit {
     this.router.navigate(['recipes']);
   }
 
+  private createrYouTubeUrl(videoUrl: string) {
+    if (videoUrl) {
+      return this.sanitizer.bypassSecurityTrustResourceUrl(
+        'https://www.youtube.com/embed/' + videoUrl.split('v=')[1]
+      );
+    }
+  }
 }
