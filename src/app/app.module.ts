@@ -21,6 +21,8 @@ import { ShortenPipe } from './shared/shorten.pipe';
 import { FirebaseStorageService } from './shared/firebase-storage.service';
 import { HttpClientModule } from '@angular/common/http';
 import { SafePipeModule } from 'safe-pipe';
+import { AuthComponent } from './auth/auth.component';
+import { CssSpinnerComponent } from './shared/css-spinner/css-spinner.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +38,8 @@ import { SafePipeModule } from 'safe-pipe';
     RecipeStartComponent,
     RecipeEditComponent,
     ShortenPipe,
+    AuthComponent,
+    CssSpinnerComponent,
    ],
   imports: [
     BrowserModule,
