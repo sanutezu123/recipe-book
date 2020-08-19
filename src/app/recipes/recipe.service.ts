@@ -34,7 +34,11 @@ export class RecipeService {
     }
 
     addRecipe(newRecipe: Recipe) {
-        console.log(this.recipes.length + 1);
+       // console.log(this.recipes.length + 1);
+        if(this.recipes === null) {
+            this.recipes = [];
+        }
+        console.log(this.recipes);
         newRecipe.id = this.recipes.length + 1;
         this.recipes.push(newRecipe);
         this.newRecipeCreated.next(this.recipes.slice());
@@ -63,6 +67,10 @@ export class RecipeService {
     setRecipes(recipes: Recipe[]) {
         this.recipes = recipes;
         this.newRecipeCreated.next(recipes);
+    }
+
+    clear() {
+        this.recipes = [];
     }
 }
 

@@ -23,6 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { SafePipeModule } from 'safe-pipe';
 import { AuthComponent } from './auth/auth.component';
 import { CssSpinnerComponent } from './shared/css-spinner/css-spinner.component';
+import { environment } from '../environments/environment';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +49,7 @@ import { CssSpinnerComponent } from './shared/css-spinner/css-spinner.component'
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    SafePipeModule
+    SafePipeModule,
   ],
   providers: [RecipeService, ShoppingListService, FirebaseStorageService],
   bootstrap: [AppComponent]

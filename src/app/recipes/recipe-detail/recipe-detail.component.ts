@@ -11,7 +11,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser'
 })
 export class RecipeDetailComponent implements OnInit {
 
-  private recipeElm: Recipe;
+  recipeElm: Recipe;
   videoPath: SafeResourceUrl;
   private id: number;
   constructor(private shoppingListService: ShoppingListService,

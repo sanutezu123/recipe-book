@@ -2,6 +2,7 @@ import { Ingredient } from '../shared/ingredient.model';
 import { SafeResourceUrl } from '@angular/platform-browser';
 
 export class Recipe{
+    public recipdBookId: string;
     public id: number;
     public name: string;
     public description: string;
@@ -9,8 +10,9 @@ export class Recipe{
     public ingredients: Ingredient[];
     public videoPath: string;
     public safeVideoPath: SafeResourceUrl;
+    public isDeleted: boolean;
     // tslint:disable-next-line:max-line-length
-    constructor(id: number, name: string, description: string, imagePath: string, ingredients: Ingredient[], videoPath: string, safeVideoPath: SafeResourceUrl) {
+    constructor(recipdBookId: string, id: number, name: string, description: string, imagePath: string, ingredients: Ingredient[], videoPath: string, safeVideoPath: SafeResourceUrl, isDeleted: boolean) {
         this.name = name;
         this.description = description;
         this.imagePath = imagePath;
@@ -18,5 +20,7 @@ export class Recipe{
         this.ingredients = ingredients;
         this.videoPath = videoPath;
         this.safeVideoPath = safeVideoPath;
+        this.recipdBookId = recipdBookId;
+        this.isDeleted = isDeleted;
     }
 }
