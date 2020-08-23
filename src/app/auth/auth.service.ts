@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user.model';
 import { tap } from 'rxjs/operators';
 import { Subject, BehaviorSubject } from 'rxjs';
+import { RecipeService } from '../recipes/recipe.service';
+import { Router } from '@angular/router';
 export interface AuthResponse {
     email: string;
     expiresIn: string;
@@ -19,7 +21,10 @@ export class AuthService {
     user = new BehaviorSubject<User>(null);
     endpoint = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDd3sMTZVkweZaEUE3JXCEyxnnaSQXhOzk';
     loginEndpoint = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDd3sMTZVkweZaEUE3JXCEyxnnaSQXhOzk';
-    constructor(private http: HttpClient) { }
+    private tokeExpirationTimer: any;
+    constructor(private http: HttpClient,
+                private recipeService: RecipeService,
+                private router: Router) { }
 
     signup(email: string, password: string) {
         return this.http.post<AuthResponse>(this.endpoint, {
@@ -28,7 +33,7 @@ export class AuthService {
             returnSecureToken: true
         }).pipe(
                 tap( responseData => {
-                    this.registerUser(responseData.email,
+                    this.handleAuthentication(responseData.email,
                         +responseData.expiresIn,
                         responseData.idToken,
                         responseData.localId);
@@ -43,7 +48,7 @@ export class AuthService {
             returnSecureToken: true
         }).pipe(
             tap( responseData => {
-                this.registerUser(responseData.email,
+                this.handleAuthentication(responseData.email,
                     +responseData.expiresIn,
                     responseData.idToken,
                     responseData.localId);
@@ -52,13 +57,54 @@ export class AuthService {
     );
     }
 
-    private registerUser(email: string, expiresIn: number, idToken: string, localId: string) {
+    private handleAuthentication(email: string, expiresIn: number, idToken: string, localId: string) {
         const expirationDate = new Date(new Date().getTime() + expiresIn*1000);
         const user  = new User(email, localId, idToken,  expirationDate);
+        this.autoLogout(expiresIn * 1000);
         this.user.next(user);
+        localStorage.setItem('userData', JSON.stringify(user));
     }
 
     logout() {
         this.user.next(null);
+        localStorage.removeItem('userData');
+        this.recipeService.clear();
+        this.router.navigate(['/auth']);
+        if (this.tokeExpirationTimer) {
+            clearTimeout(this.tokeExpirationTimer);
+        }
+        this.tokeExpirationTimer = null;
+    }
+    /**
+     * method to keep the user logged in
+     */
+    autoLogin() {
+        const userData: {
+            email: string,
+            id: string,
+            _token: string,
+            _tokenExpirationDate: string} = JSON.parse(localStorage.getItem('userData'));
+        if (!userData) {
+            return;
+        }
+        const loadedUSer = new User(
+            userData.email,
+            userData.id,
+            userData._token,
+            new Date(userData._tokenExpirationDate)
+        );
+        console.log('loadedUser' + loadedUSer.token);
+        if (loadedUSer.token) {
+            this.user.next(loadedUSer);
+            const expiratonDuration = loadedUSer.tokeExpirationDate.getTime() - new Date().getTime();
+            this.autoLogout(expiratonDuration);
+        }
+
+    }
+
+    autoLogout(expirationDuration: number) {
+        this.tokeExpirationTimer = setTimeout(() => {
+            this.logout();
+        }, expirationDuration);
     }
 }

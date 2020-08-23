@@ -8,9 +8,11 @@ import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.compon
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { RecipeResolverService } from './shared/recipes-resolver.service';
 import { AuthComponent } from './auth/auth.component';
+import { LandingPage } from './landing/landing-page.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/auth', pathMatch: 'full'},
+  {path: 'home', component: LandingPage},
+  {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'recipes', component: RecipesComponent, children: [
     {path: '', component: RecipeStartComponent},
     {path: 'new', component: RecipeEditComponent},

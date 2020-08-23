@@ -24,7 +24,13 @@ import { SafePipeModule } from 'safe-pipe';
 import { AuthComponent } from './auth/auth.component';
 import { CssSpinnerComponent } from './shared/css-spinner/css-spinner.component';
 import { environment } from '../environments/environment';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatCardModule } from '@angular/material/card';
+import { LandingPage } from './landing/landing-page.component';
+import { MatSliderModule } from '@angular/material/slider';
+import { ParticlesModule } from 'angular-particle';
+import { RecipesContentComponent } from './landing/recipes-content/recipes-content.component';
+ 
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +48,8 @@ import { environment } from '../environments/environment';
     ShortenPipe,
     AuthComponent,
     CssSpinnerComponent,
+    LandingPage,
+    RecipesContentComponent
    ],
   imports: [
     BrowserModule,
@@ -50,6 +58,10 @@ import { environment } from '../environments/environment';
     ReactiveFormsModule,
     HttpClientModule,
     SafePipeModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatSliderModule,
+    ParticlesModule
   ],
   providers: [RecipeService, ShoppingListService, FirebaseStorageService],
   bootstrap: [AppComponent]
