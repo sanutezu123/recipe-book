@@ -13,7 +13,7 @@ import { AuthGaurd } from './auth/auth.gaurd';
 
 const routes: Routes = [
   {path: 'home', component: LandingPage},
-  {path: '', redirectTo: '/home', pathMatch: 'full'},
+  {path: '', redirectTo: '/auth', pathMatch: 'full'},
   {path: 'recipes', component: RecipesComponent, canActivate: [AuthGaurd], children: [
     {path: '', component: RecipeStartComponent},
     {path: 'new', component: RecipeEditComponent},
