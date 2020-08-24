@@ -30,7 +30,8 @@ import { LandingPage } from './landing/landing-page.component';
 import { MatSliderModule } from '@angular/material/slider';
 import { ParticlesModule } from 'angular-particle';
 import { RecipesContentComponent } from './landing/recipes-content/recipes-content.component';
- 
+import { AlertComponent } from './alert-component/alert.component';
+import { PlaceHolderDirective } from './shared/placeholder.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +50,9 @@ import { RecipesContentComponent } from './landing/recipes-content/recipes-conte
     AuthComponent,
     CssSpinnerComponent,
     LandingPage,
-    RecipesContentComponent
+    RecipesContentComponent,
+    AlertComponent,
+    PlaceHolderDirective
    ],
   imports: [
     BrowserModule,
@@ -64,6 +67,7 @@ import { RecipesContentComponent } from './landing/recipes-content/recipes-conte
     ParticlesModule
   ],
   providers: [RecipeService, ShoppingListService, FirebaseStorageService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [AlertComponent]
 })
 export class AppModule { }
