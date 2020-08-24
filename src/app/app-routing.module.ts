@@ -9,11 +9,12 @@ import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component
 import { RecipeResolverService } from './shared/recipes-resolver.service';
 import { AuthComponent } from './auth/auth.component';
 import { LandingPage } from './landing/landing-page.component';
+import { AuthGaurd } from './auth/auth.gaurd';
 
 const routes: Routes = [
   {path: 'home', component: LandingPage},
   {path: '', redirectTo: '/home', pathMatch: 'full'},
-  {path: 'recipes', component: RecipesComponent, children: [
+  {path: 'recipes', component: RecipesComponent, canActivate: [AuthGaurd], children: [
     {path: '', component: RecipeStartComponent},
     {path: 'new', component: RecipeEditComponent},
     {path: ':id', component: RecipeDetailComponent, resolve: [RecipeResolverService]},
