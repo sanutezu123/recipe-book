@@ -51,7 +51,6 @@ export class AuthComponent implements OnInit, OnDestroy {
 
     authObservable.subscribe(
       (response) => {
-        console.log(response);
         this.isLoading = false;
         this.authForm.reset();
         this.router.navigate(['/recipes']);
@@ -81,6 +80,8 @@ export class AuthComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.closeSub.unsubscribe();
+    if (this.closeSub) {
+      this.closeSub.unsubscribe();
+    }
   }
 }

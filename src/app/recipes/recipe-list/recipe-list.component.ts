@@ -15,14 +15,23 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   constructor(private recipeService: RecipeService, private router: Router,
               private route: ActivatedRoute, private fbService: FirebaseStorageService) { }
-
+  isLoadingRecipe = false;
+  error = '';
   ngOnInit() {
     //this.recipes = this.recipeService.getRecipe();
-    this.fbService.fetchRecipesFromFirebase().subscribe();
+    this.fbService.fetchRecipesFromFirebase().subscribe(
+      (response) => {},
+      ((errorResponse) => {
+        this.isLoadingRecipe = false;
+        this.error = errorResponse.error.error;
+      })
+    );
+    this.isLoadingRecipe = true;
     this.subscription = this.recipeService.newRecipeCreated.subscribe(
       (newRecipesList: Recipe[]) => {
         this.recipes = newRecipesList;
-      }
+        this.isLoadingRecipe = false;
+      },
     );
   }
   onCreateNewRecipe() {
@@ -31,5 +40,8 @@ export class RecipeListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+  onClickOut() {
+     this.error = null;
   }
 }

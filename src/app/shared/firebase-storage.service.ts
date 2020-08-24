@@ -26,10 +26,8 @@ export class FirebaseStorageService {
         );
     }
     fetchRecipesFromFirebase() {
-         console.log('fetch recipes');
-         return this.authService.user.pipe(take(1),
+          return this.authService.user.pipe(take(1),
             exhaustMap( user => {
-                console.log('token' + user.token);
                 this.currentUserEmail = user.email;
                 return this.http.get<RecipeBook>(this.firebaseEndpoint + this.util.generateID(user.email) + '_recipes.json', {
                     params: new HttpParams().set('auth', user.token)
@@ -47,7 +45,6 @@ export class FirebaseStorageService {
                 //     }
                 //  });
                 return recipes.map( recipe => {
-                    console.log("Rec"+recipe);
                     return {
                          ...recipe, ingredients: recipe.ingredients ? recipe.ingredients : []
                      };

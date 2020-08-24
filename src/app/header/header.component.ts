@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, OnDestroy, HostListener } from '@angular/core';
 import { RecipeService } from '../recipes/recipe.service';
 import { FirebaseStorageService } from '../shared/firebase-storage.service';
 import { AuthService } from '../auth/auth.service';
@@ -13,6 +13,8 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit, OnDestroy {
   private userSubscription: Subscription;
   isAuthenticated = false;
+  isSaved = false;
+  error = '';
   constructor(private firebaseStorageService: FirebaseStorageService, private authServcie: AuthService,
       private router: Router, private recipeService: RecipeService) { }
   ngOnInit() {
@@ -24,10 +26,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   saveRecipes() {
+    this.isSaved = false;
     this.firebaseStorageService.storeRecipesInFirebase()
       .subscribe(
         (repsonse) => {
-          console.log(repsonse);
+          this.isSaved = true;
+        },
+        (errorResponse) => {
+          this.isSaved = false;
+          this.error = errorResponse.error.error;
         }
       );
   }
@@ -41,5 +48,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   onLogout() {
     this.authServcie.logout();
+  }
+  onClickOut() {
+    this.isSaved = false;
+    this.error = null;
   }
 }

@@ -1,14 +1,22 @@
 <div class="row">
     <div class="col-md-12">
-        <button class="btn btn-success" (click) = "onCreateNewRecipe()">Create Recipe</button>
+        <button class="btn btn-success" (click)="onCreateNewRecipe()">Create Recipe</button>
     </div>
 </div>
 <hr>
+
 <div class="row">
     <div class="col-xs-12">
-        <app-recipe-item [recipe] = "recipe" *ngFor = "let recipe of recipes" 
-        [routerLink] = "['/recipes',recipe.id]">
-        </app-recipe-item>
+        <div *ngIf="isLoadingRecipe" style="text-align: center">
+            <app-css-spinner></app-css-spinner>
+        </div>
+        <div *ngIf="!isLoadingRecipe && !error">
+            <app-recipe-item [recipe]="recipe" *ngFor="let recipe of recipes" [routerLink]="['/recipes',recipe.id]">
+            </app-recipe-item>
+        </div>
+        <div *ngIf="!isLoadingRecipe && error" class="alert alert-danger" appClickOutside (clickOutSide)="onClickOut()">
+            <p>{{error}}</p>
+        </div>
+
     </div>
 </div>
-

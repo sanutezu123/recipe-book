@@ -32,6 +32,7 @@ import { ParticlesModule } from 'angular-particle';
 import { RecipesContentComponent } from './landing/recipes-content/recipes-content.component';
 import { AlertComponent } from './alert-component/alert.component';
 import { PlaceHolderDirective } from './shared/placeholder.directive';
+import { ClickOutSideDirective } from './shared/clickOutside.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +53,8 @@ import { PlaceHolderDirective } from './shared/placeholder.directive';
     LandingPage,
     RecipesContentComponent,
     AlertComponent,
-    PlaceHolderDirective
+    PlaceHolderDirective,
+    ClickOutSideDirective
    ],
   imports: [
     BrowserModule,
