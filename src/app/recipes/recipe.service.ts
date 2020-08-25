@@ -1,8 +1,8 @@
 import { Recipe } from "./recipe.model";
 import { Injectable } from '@angular/core';
-import { Ingredient } from '../shared/ingredient.model';
+import { Ingredient } from '../shared/model/ingredient.model';
 import { Subject } from 'rxjs';
-import { FirebaseStorageService } from '../shared/firebase-storage.service';
+import { FirebaseStorageService } from '../shared/services/firebase-storage.service';
 @Injectable()
 export class RecipeService {
      newRecipeCreated = new Subject<Recipe[]>();

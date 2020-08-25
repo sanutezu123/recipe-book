@@ -1,8 +1,8 @@
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { Recipe } from '../recipes/recipe.model';
+import { Recipe } from '../../recipes/recipe.model';
 import { FirebaseStorageService } from './firebase-storage.service';
 import { Injectable } from '@angular/core';
-import { RecipeService } from '../recipes/recipe.service';
+import { RecipeService } from '../../recipes/recipe.service';
 @Injectable({
     providedIn: 'root'
 })

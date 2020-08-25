@@ -1,6 +1,6 @@
 import { Component, OnInit,Input,OnChanges } from '@angular/core';
 import { Recipe } from '../../recipe.model';
-import { FirebaseStorageService } from 'src/app/shared/firebase-storage.service';
+import { FirebaseStorageService } from '../../../shared/services/firebase-storage.service';
 
 @Component({
   selector: 'app-recipe-item',

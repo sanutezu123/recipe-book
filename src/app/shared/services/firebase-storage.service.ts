@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Recipe } from '../recipes/recipe.model';
+import { Recipe } from '../../recipes/recipe.model';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { RecipeService } from '../recipes/recipe.service';
+import { RecipeService } from '../../recipes/recipe.service';
 import { map, tap, take, exhaustMap } from 'rxjs/operators';
-import { AuthService } from '../auth/auth.service';
-import { User} from '../models/user.model';
-import { RecipeBook } from '../recipes/recipeBook.model';
+import { AuthService } from '../../auth/auth.service';
+import { User} from '../../models/user.model';
+import { RecipeBook } from '../../recipes/recipeBook.model';
 import { forEach } from '@angular/router/src/utils/collection';
 import { CommonUtil } from './util.service';
 @Injectable()

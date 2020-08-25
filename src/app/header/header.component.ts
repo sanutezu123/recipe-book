@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, OnDestroy, HostListener } from '@angular/core';
 import { RecipeService } from '../recipes/recipe.service';
-import { FirebaseStorageService } from '../shared/firebase-storage.service';
+import { FirebaseStorageService } from '../shared/services/firebase-storage.service';
 import { AuthService } from '../auth/auth.service';
 import { User } from '../models/user.model';
 import { Subscription } from 'rxjs';

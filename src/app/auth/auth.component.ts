@@ -4,8 +4,7 @@ import { AuthService, AuthResponse } from './auth.service';
 import { Observable, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { AlertComponent } from '../alert-component/alert.component';
-import { Placeholder } from '@angular/compiler/src/i18n/i18n_ast';
-import { PlaceHolderDirective } from '../shared/placeholder.directive';
+import { PlaceHolderDirective } from '../shared/directives/placeholder.directive';
 
 @Component({
   selector: 'app-auth',

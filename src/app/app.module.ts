@@ -1,61 +1,40 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { RecipesComponent } from './recipes/recipes.component';
-import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component';
-import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
-import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-item.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
-import { DropdownDirective } from './shared/dropdown.directive';
 import { RecipeService } from './recipes/recipe.service';
 import { ShoppingListService } from './shopping-list/shopping-list.service';
 import { ErrorPageComponent } from './error-page/error-page.component';
-import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
-import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ShortenPipe } from './shared/shorten.pipe';
-import { FirebaseStorageService } from './shared/firebase-storage.service';
+import { FirebaseStorageService } from './shared/services/firebase-storage.service';
 import { HttpClientModule } from '@angular/common/http';
 import { SafePipeModule } from 'safe-pipe';
-import { AuthComponent } from './auth/auth.component';
-import { CssSpinnerComponent } from './shared/css-spinner/css-spinner.component';
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { LandingPage } from './landing/landing-page.component';
 import { MatSliderModule } from '@angular/material/slider';
 import { ParticlesModule } from 'angular-particle';
-import { RecipesContentComponent } from './landing/recipes-content/recipes-content.component';
 import { AlertComponent } from './alert-component/alert.component';
-import { PlaceHolderDirective } from './shared/placeholder.directive';
-import { ClickOutSideDirective } from './shared/clickOutside.directive';
+import { HamburgerComponent } from './header/temp/hamburger/hamburger.component';
+import { RecipesModule } from './recipes/recipes.module';
+import { AuthModule } from './auth/auth.module';
+import { DropdownDirective } from './shared/directives/dropdown.directive';
+import { SharedModule } from './shared/shared.module';
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    RecipesComponent,
-    RecipeListComponent,
-    RecipeDetailComponent,
-    RecipeItemComponent,
     ShoppingListComponent,
     ShoppingEditComponent,
-    DropdownDirective,
     ErrorPageComponent,
-    RecipeStartComponent,
-    RecipeEditComponent,
-    ShortenPipe,
-    AuthComponent,
-    CssSpinnerComponent,
     LandingPage,
-    RecipesContentComponent,
     AlertComponent,
-    PlaceHolderDirective,
-    ClickOutSideDirective
-   ],
+    HamburgerComponent
+  ],
   imports: [
     BrowserModule,
     FormsModule,
@@ -66,7 +45,10 @@ import { ClickOutSideDirective } from './shared/clickOutside.directive';
     BrowserAnimationsModule,
     MatCardModule,
     MatSliderModule,
-    ParticlesModule
+    ParticlesModule,
+    RecipesModule,
+    AuthModule,
+    SharedModule
   ],
   providers: [RecipeService, ShoppingListService, FirebaseStorageService],
   bootstrap: [AppComponent],
