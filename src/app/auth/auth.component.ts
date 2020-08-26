@@ -3,7 +3,7 @@ import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService, AuthResponse } from './auth.service';
 import { Observable, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
-import { AlertComponent } from '../alert-component/alert.component';
+import { AlertComponent } from '../shared/alert-component/alert.component';
 import { PlaceHolderDirective } from '../shared/directives/placeholder.directive';
 
 @Component({
