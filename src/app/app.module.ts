@@ -14,8 +14,6 @@ import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { LandingPage } from './landing/landing-page.component';
-import { MatSliderModule } from '@angular/material/slider';
-import { ParticlesModule } from 'angular-particle';
 import { AlertComponent } from './shared/alert-component/alert.component';
 import { HamburgerComponent } from './header/temp/hamburger/hamburger.component';
 import { RecipesModule } from './recipes/recipes.module';
@@ -40,12 +38,10 @@ import { ShoppingModule } from './shopping-list/shopping.module';
     SafePipeModule,
     BrowserAnimationsModule,
     MatCardModule,
-    MatSliderModule,
-    ParticlesModule,
-    RecipesModule,
     AuthModule,
     SharedModule,
-    ShoppingModule
+    ShoppingModule,
+    RecipesModule
   ],
   providers: [RecipeService, ShoppingListService, FirebaseStorageService],
   bootstrap: [AppComponent],

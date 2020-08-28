@@ -5,6 +5,7 @@ import { tap } from 'rxjs/operators';
 import { Subject, BehaviorSubject } from 'rxjs';
 import { RecipeService } from '../recipes/recipe.service';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
 export interface AuthResponse {
     email: string;
     expiresIn: string;
@@ -19,8 +20,8 @@ export interface AuthResponse {
 })
 export class AuthService {
     user = new BehaviorSubject<User>(null);
-    endpoint = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDd3sMTZVkweZaEUE3JXCEyxnnaSQXhOzk';
-    loginEndpoint = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDd3sMTZVkweZaEUE3JXCEyxnnaSQXhOzk';
+    endpoint = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + environment.firebaseConfig.apiKey;
+    loginEndpoint = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key='+ environment.firebaseConfig.apiKey;
     private tokeExpirationTimer: any;
     constructor(private http: HttpClient,
                 private recipeService: RecipeService,

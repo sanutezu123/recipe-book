@@ -10,7 +10,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
         ShoppingEditComponent,
     ],
     imports: [
-        SharedModule, ReactiveFormsModule,FormsModule
+        SharedModule, ReactiveFormsModule, FormsModule
     ],
     exports: [
         ShoppingListComponent,
